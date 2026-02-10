@@ -109,7 +109,7 @@ is being read when it is supposed to and not sending packets when not needed.
 
 _NOTE: Their is only been a slight bit of effort to mitigate duplicate packets!_
 
-## Nodes
+## Node Code
 There are currently four nodes, which means that there are four seperate arduino codes for each individual node, aptly named node_1, node_2, node_3, and node_4
 
 - The nodes have had severe rework to fix bugs and proper indentation and code syntax to make the program run smoother and improve readability.
@@ -134,4 +134,5 @@ _Trobuleshoot using the command: pip install pyserial_
 
 ## XBee Sniffer Interface (XSI)
 A new program devloped by Aaron J. Pohlman specifically for this project and to use XBee Radio modules. This program was developed in the background during testing and has been continously worked on. It helps manage files easier, make test start faster, checks for specific details, and improves reliability versus the old xbee_packet_sniffer_v2.py file. The program is currently at **Version 0.2.5**. To learn more, visit the github related to it to learn how to download, use, and test with it.
+
 
