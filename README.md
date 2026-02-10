@@ -6,7 +6,7 @@ Netowrking protocols are improtant for the basic communication systems that run 
 The original research was started by **Cooper J. Koch** and **Alexander H. Burkholder** under the research advisor **Ahmed Ammar** at <ins>Ohio Northern University</ins>. The research is now being continued by **Aaron J. Pohlman** under the research advisor **Ahmed Ammar** at <ins>Ohio Northern University</ins> to further invstigate network trends and simulating trojan attacks. 
 
 ## Repository Information
-This is **Version 0.2** (located in C-ARQ_CODE_2 branch on git) based on the code provided by Cooper J. Koch and Alexander H. Burkholder under the research advisor Ahmed Ammar. The original code has been significantly changed by Aaron J. Pohlman to improve various aspects. View bottom sections for more information. 
+This is **Version 0.2** (located in ARQ_CODE_2 branch on git) based on the code provided by Cooper J. Koch and Alexander H. Burkholder under the research advisor Ahmed Ammar. The original code has been significantly changed by Aaron J. Pohlman to improve various aspects. View bottom sections for more information. 
 
 ## Testing Information
 The tests are conducted by using the following equipment:
@@ -134,3 +134,4 @@ _Trobuleshoot using the command: pip install pyserial_
 
 ## XBee Sniffer Interface (XSI)
 A new program devloped by Aaron J. Pohlman specifically for this project and to use XBee Radio modules. This program was developed in the background during testing and has been continously worked on. It helps manage files easier, make test start faster, checks for specific details, and improves reliability versus the old xbee_packet_sniffer_v2.py file. The program is currently at **Version 0.2.5**. To learn more, visit the github related to it to learn how to download, use, and test with it.
+
