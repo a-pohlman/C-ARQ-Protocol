@@ -30,11 +30,12 @@ int waitTime {0};
 
 bool haveP1 = false;
 bool haveP3 = false;
+bool haveP4 = false;
 
 void setup() {
   Serial.begin(9600);
   Serial.setTimeout(10);
-  Serial.println(">>>starting_node_2");
+  Serial.println(">>>start_node_2");
 }
 
 String parseMsg(String msg, unsigned int atComma) {
@@ -75,10 +76,13 @@ void loop() {
     pastBattery = currentBattery;  
 
     if (baseMsg == "1") {haveP1 = true;}
-    else if (baseMsg == "ReqP2" || baseMsg == "ReqP3") {haveP1 = false;}
+    else if (baseMsg == "ReqP2" || baseMsg == "ReqP3" || baseMsg == "ReqP4") {haveP1 = false;}
                           
     if (baseMsg == "3") {haveP3 = true;}
-    else if (baseMsg == "ReqP1" || baseMsg == "ReqP2") {haveP3 = false;}
+    else if (baseMsg == "ReqP1" || baseMsg == "ReqP2" || baseMsg == "ReqP4") {haveP3 = false;}
+
+    if (baseMsg == "4") {haveP4 = true;}
+    else if (baseMsg == "ReqP1" || baseMsg == "ReqP2" || baseMsg == "ReqP3") {haveP4 = false;}
 
 
     if (pastBattery-POWER_DRAINED > POWER_DRAINED && negAckMsg == "NACK" && baseMsg != "ReqP2") {
@@ -102,9 +106,17 @@ void loop() {
         Serial.println(pastBattery);
         Serial.readStringUntil('\n');
         Serial.flush();
-      }       
+      }
+
+      if (haveP4 == true && negAckMsg == "NACK" && Serial.available() == 0) { 
+        pastBattery -= POWER_DRAINED;
+        Serial.print("4,N2 ");
+        Serial.println(pastBattery);
+        Serial.readStringUntil('\n');
+        Serial.flush();
+      }          
     }
-    else if (baseMsg == "ReqP2" && baseMsg != "ReqP1" && baseMsg != "ReqP3" && pastBattery-POWER_DRAINED > POWER_DRAINED) {
+    else if (baseMsg == "ReqP2" && baseMsg != "ReqP1" && baseMsg != "ReqP3" && baseMsg != "ReqP4" && pastBattery-POWER_DRAINED > POWER_DRAINED) {
       Serial.flush();
       while (Serial.available() > 0) {Serial.read();}
       
