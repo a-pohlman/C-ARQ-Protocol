@@ -12,11 +12,11 @@
 
 // Change below values during testing periods (or for debugging purposes)
 // Immutable Values
-#define AVAILABLE_NODES 3 // N // The amount of nodes available to trasnmit to the base station
+#define AVAILABLE_NODES 4 // N // The amount of nodes available to trasnmit to the base station
 #define MAXIMUM_ATTEMPTS 3 // M // Maximimum amount of attempts the base station attempts before moving to the next node
 #define MAXIMUM_TEST_PACKETS 5000 // Maximum amount of packets to be tested by base station
 #define WAIT_TIME 1000 // T // Delay the base station waits before reading antoher value
-#define SUCCESS_THRESHOLD 80 // Likelyhood that a channel could fail (if at 80, then their is an 80% a packet will be acknowledged)
+#define SUCCESS_THRESHOLD 80 // Likelyhood that a channel could fail (if at 80, then their is an 80% chance a packet will be acknowledged)
 
 // Mutable Values
 int atNode {1}; // i // The current node that the base station is on
@@ -39,7 +39,7 @@ void setup() {
   Serial.setTimeout(100); // Sets time to wait (for 100ms) for readStringUntil() method before continuing to read data
   randomSeed(analogRead(0)); // Sets the seed of the random number generator to the analog pin A0 on the Arduino Board
   Serial.println(">>>starting_new_test"); // Displays that the test is beginning
-  delay(4000); // Wait 4 seconds for all nodes to setup along with sniffer 
+  delay(4000); // Wait 8 seconds for all nodes to setup along with sniffer 
 }
 
 // Main execution to run infitely
@@ -85,6 +85,17 @@ void loop() {
                 break;
             }
             break;
+
+          case 4:
+            switch (negativeAck) {
+              case 1:
+                Serial.println("ReqP4,NACK,");
+                break;
+              case 0:
+                Serial.println("ReqP4,");
+                break;
+            }
+            break;
           }
 
         Serial.flush(); // Ensure all data has been sent
@@ -106,6 +117,11 @@ void loop() {
         }
         else if (receivedMessage == "3" && atNode == 3 && random(100) <= SUCCESS_THRESHOLD) {
           Serial.println("ACKP3,"); 
+          successfulPackets++;
+          break;
+        }
+        else if (receivedMessage == "4" && atNode == 4 && random(100) <= SUCCESS_THRESHOLD) {
+          Serial.println("ACKP4,");
           successfulPackets++;
           break;
         }
@@ -137,7 +153,7 @@ void loop() {
     Serial.println(failedPackets);
 
     Serial.print("delivery_ratio: ");
-    Serial.println(static_cast<float>(successfulPackets)/totalPackets); // Ensure that Arduino is performing floating point operations with integers than other methods and send out message (C++ Method)
+    Serial.println(static_cast<float>(successfulPackets)/totalPackets, 3); // Ensure that Arduino is performing floating point operations with integers than other methods and send out message (C++ Method)
     // format: static_cast<data_type>(number1) / number2
 
     Serial.println(">>>end_of_test"); // Use this with the xbee_packet_sniffer_v2.py to end the test automatically, input as the stop_lookout_phrase
