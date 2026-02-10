@@ -126,7 +126,7 @@ python file asks for the following parameters now:
 3. Full path to file: _path to file (e.g. c:/Users/YOURUSERNAME/DESTINATION)_
 4. Enable Stop: _y/n_
 	- Enter stop lookout phrase: _stop lookout phrase (currently setup for the phrase: >>>end_of_test)_
-5. Enter serial port: _USB port connected to the sniffer (e.g. COM7 [Windows] /dev/ttyUSB0 [Linux Ubuntu))_
+5. Enter serial port: _USB port connected to the sniffer (e.g. COM7 [Windows] /dev/ttyUSB0 [Linux Ubuntu])_
 
 - External Python modules required: pyserial
 
@@ -134,5 +134,6 @@ _Trobuleshoot using the command: pip install pyserial_
 
 ## XBee Sniffer Interface (XSI)
 A new program devloped by Aaron J. Pohlman specifically for this project and to use XBee Radio modules. This program was developed in the background during testing and has been continously worked on. It helps manage files easier, make test start faster, checks for specific details, and improves reliability versus the old xbee_packet_sniffer_v2.py file. The program is currently at **Version 0.2.5**. To learn more, visit the github related to it to learn how to download, use, and test with it.
+
 
 
