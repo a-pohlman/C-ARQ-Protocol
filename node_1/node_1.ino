@@ -16,6 +16,7 @@
 // Immutable Values
 #define POWER_DRAINED 1 // P // Sets the amount of power drained per transmission of a packet
 #define CHARGE_RATE 10 // alpha // amount that the nodes harvest energy per second 
+#define TROJAN_DELAY 200 // t0 // Trojan delay to simulate a node infected with a trojan virus (ms)
 
 // Mutable Values 
 // --------------
@@ -32,17 +33,19 @@ float pastBattery {0}; // The previous battery capacity (from the last read time
 float timeDif {0}; // The time difference between cPacket and lPacket
 float chargeTime {0}; // tau // The total time the node had time to charge (in seconds)
 int waitTime {0}; // The wait time the node should delay itself for (unless otherwise zero)
+// int successThreshold {1}; <<< Deleted as we assume the nodes have a 100% chance at recieved base station messages
 
 // Other nodes packets
 // bool haveP1 = true; <<< Deleted as we assume that node 1 always has its own packet (same for other nodes)
 bool haveP2 = false; // Checks whether we have node 2's packet
 bool haveP3 = false; // Checks whether we have node 3's packet
+bool haveP4 = false; // Checks whether we have node 4's packet
 
 // Serial information setup
 void setup() {
   Serial.begin(9600); // Set baud rate to 9600
   Serial.setTimeout(10); // Set the time to read strings before moving on as 10ms
-  Serial.println(">>>starting_node_1"); // Display that node 1 has started
+  Serial.println(">>>start_node_1"); // Display that node 1 has started
 }
 
 /**
@@ -83,7 +86,7 @@ void loop() {
     chargeTime = timeDif / 1000; // Divide by 1000ms to convert the time difference into seconds
     currentBattery = pastBattery + (chargeTime * CHARGE_RATE); // Calculate the current battery level using the formula: past battery level + (alpha*tau)
     if (currentBattery > 1000) {currentBattery = 1000;} // Check to see if battery is at capacity K
-    waitTime = 1000 - currentBattery; // Calculate wait time
+    waitTime = 1000 - currentBattery + TROJAN_DELAY; // Calculate wait time
 
     // Reset past values to current values for next packet 
     lPacket = cPacket; 
@@ -92,13 +95,16 @@ void loop() {
 
     // Check to see if any other nodes have broadcasted their packets; 'store' them for later; 'delete' them later
     if (baseMsg == "2") {haveP2 = true;}
-    else if (baseMsg == "ReqP1" || baseMsg == "ReqP3") {haveP2 = false;}
+    else if (baseMsg == "ReqP1" || baseMsg == "ReqP3" || baseMsg == "ReqP4") {haveP2 = false;}
                           
     if (baseMsg == "3") {haveP3 = true;}
-    else if (baseMsg == "ReqP1" || baseMsg == "ReqP2") {haveP3 = false;}
+    else if (baseMsg == "ReqP1" || baseMsg == "ReqP2" || baseMsg == "ReqP4") {haveP3 = false;}
+
+    if (baseMsg == "4") {haveP4 = true;}
+    else if (baseMsg == "ReqP1" || baseMsg == "ReqP2" || baseMsg == "ReqP3") {haveP4 = false;}
 
     // Check to see if this node is a canidate for anthor node
-    if (pastBattery-POWER_DRAINED > POWER_DRAINED && negAckMsg == "NACK" && baseMsg != "ReqP1" ) { // Must have enough battery, negative acknowlegement broadcasted, and not requesting our own packet
+    if (pastBattery-POWER_DRAINED > POWER_DRAINED && negAckMsg == "NACK" && baseMsg != "ReqP1") { // Must have enough battery, negative acknowlegement broadcasted, and not requesting our own packet
       Serial.flush(); // Ensure all data has been sent
       while (Serial.available() > 0) {Serial.read();} // Empty serial of any bytes
       if (waitTime != 0) { // Wait unless time is zero 
@@ -122,9 +128,17 @@ void loop() {
         Serial.readStringUntil('\n');
         Serial.flush();
       }  
+
+      if (haveP4 == true && negAckMsg == "NACK" && Serial.available() == 0) {
+        pastBattery -= POWER_DRAINED;
+        Serial.print("4,N1 ");
+        Serial.println(pastBattery);
+        Serial.readStringUntil('\n');
+        Serial.flush();
+      }
     }
     // If a request for our packet is coming from the base station, or we are a canidate for our own packet, then check that it's not other requests, and that we have the battery capacity to transmit
-    else if (baseMsg == "ReqP1" && baseMsg != "ReqP2" && baseMsg != "ReqP3" && pastBattery-POWER_DRAINED > POWER_DRAINED) {
+    else if (baseMsg == "ReqP1" && baseMsg != "ReqP2" && baseMsg != "ReqP3" && baseMsg != "ReqP4" && pastBattery-POWER_DRAINED > POWER_DRAINED) {
       Serial.flush(); // Ensure all data has been sent
       while (Serial.available() > 0) {Serial.read();} // Empty serial of any bytes
 
