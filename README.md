@@ -25,7 +25,7 @@ The tests use the following software to test and collect data:
 - XBee Sniffer Interface (XSI) _(optional)_
 - XCTU by Digi Mesh
 
-**ALL RADIO MODULES WERE PROGRAMED TO THE DIGIMESH 2.4 NETWORKING PROTOCOL USING XCTU**
+**NOTICE: ALL RADIO MODULES WERE PROGRAMED TO THE DIGIMESH 2.4 NETWORKING PROTOCOL USING XCTU**
 
 Testing parameters that change per test
 | Variables         |  Unit    |  Symbol |
@@ -39,7 +39,7 @@ _IMPORTANT: During testing, there was no real trojan virus used! Instead it was 
 
 _NOTE: It should be stated that Pr(Success) is a simulated value in the code that only simulates whether a packet will fail at the base station. The nodes themselves are implicitly set to be always successful in recieving messages from the base station_
 
-Testing constants that were kept constant
+Test Constants
 | Constants        | Unit     | Symbol  | Values    |
 | :---:            | :---:    | :---:   | :---:     |
 | Maximum Attempts | #        | M       | 3         |
@@ -82,7 +82,7 @@ For trojan file names, the format is applied:
 
 _Ex: networkTest_04_50_500_00_05_raw.csv_
 
--The above example shows that the test conducted was with 4 Nodes, with a 50% success probability at the base station, a 500ms delay at the infected node (node 1), with a charge rate of 0.05, as a csv file. 
+- The above example shows that the test conducted was with 4 Nodes, with a 50% success probability at the base station, a 500ms delay at the infected node (node 1), with a charge rate of 0.05, as a csv file. 
 _NOTE: If the charge rate were 04_00 in the file name, then it would suggest a charge rate of 4.00_
 
 At the end of each test, it displays a set of statistics. Those are the following:
@@ -91,7 +91,7 @@ At the end of each test, it displays a set of statistics. Those are the followin
 - Failed Packets: **Amount of times the base station moved on**
 - Delivery Ratio: **The decimal percent value of successful packets divided by total packets**
 
-**All test files (except betaTesting files) are in the Comma Seperated Values format** 
+**NOTICE: All test files (except betaTesting files) are in the comma seperative value (csv) format** 
 
 ## Base Station Code
 Base station to send out and request data from N amount of nodes available to test with. The base station is to help the sniffer Xbeeradio module collect this data for testing purposes. Testing parameters can be changed in the Arduino file to easily simulate different situations.
@@ -134,6 +134,7 @@ _Trobuleshoot using the command: pip install pyserial_
 
 ## XBee Sniffer Interface (XSI)
 A new program devloped by Aaron J. Pohlman specifically for this project and to use XBee Radio modules. This program was developed in the background during testing and has been continously worked on. It helps manage files easier, make test start faster, checks for specific details, and improves reliability versus the old xbee_packet_sniffer_v2.py file. The program is currently at **Version 0.2.5**. To learn more, visit the github related to it to learn how to download, use, and test with it.
+
 
 
 
