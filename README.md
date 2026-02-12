@@ -3,7 +3,7 @@
 ## Background
 Netowrking protocols are improtant for the basic communication systems that run around the world. There are many different protocols that can be choosen from. This research focuses on one in particular: Cooperative Automatic Repeat Request (C-ARQ). This netowrk protocol works on a acknolowedgement (ACK) and negative-acknowlegment (NACK) system. Where if a packet is receieved successfully by the base station, then it moves on and broadcasts and postive ACK for all nodes to hear, whereas if the node fails to deliver it's packet, the base station will broadcast a NACK. Alongside a NACK, the base station will keep trying until it has reached the maximum amount of attempts before moving on and counting it as a lost packet. The cooperative part, allows other nearby nodes to become canidates for if a node fails to deliver it pack. Essentially making it more likely for a packet to be recieved, rather than not. Combining this with the idea of energy harvesting, it can be an effective strategy in having a network run and deliver packets, without the use of hooking up any nodes to a physical power source. 
 
-The original research was started by **Cooper J. Koch** and **Alexander H. Burkholder** under the research advisor **Ahmed Ammar** at <ins>Ohio Northern University</ins>. The research is now being continued by **Aaron J. Pohlman** under the research advisor **Ahmed Ammar** at <ins>Ohio Northern University</ins> to further invstigate network trends and simulating trojan attacks. 
+The original research was started by **Cooper J. Koch** and **Alexander H. Burkholder** under the research advisor [**Ahmed Ammar**](https://www.onu.edu/directory/ahmed-ammar) at [<ins>Ohio Northern University</ins>](https://www.onu.edu/). The research is now being continued by **Aaron J. Pohlman** under the research advisor [**Ahmed Ammar**](https://www.onu.edu/directory/ahmed-ammar) at [<ins>Ohio Northern University</ins>](https://www.onu.edu/) to further invstigate network trends and simulating trojan attacks. 
 
 ## Repository Information
 This is **Version 0.2** (located in ARQ_CODE_2 branch on git) based on the code provided by Cooper J. Koch and Alexander H. Burkholder under the research advisor Ahmed Ammar. The original code has been significantly changed by Aaron J. Pohlman to improve various aspects. View bottom sections for more information. 
@@ -134,6 +134,7 @@ _Trobuleshoot using the command: pip install pyserial_
 
 ## XBee Sniffer Interface (XSI)
 A new program devloped by Aaron J. Pohlman specifically for this project and to use XBee Radio modules. This program was developed in the background during testing and has been continously worked on. It helps manage files easier, make test start faster, checks for specific details, and improves reliability versus the old xbee_packet_sniffer_v2.py file. The program is currently at **Version 0.2.5**. To learn more, visit the github related to it to learn how to download, use, and test with it.
+
 
 
 
