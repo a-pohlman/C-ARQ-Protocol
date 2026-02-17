@@ -133,7 +133,8 @@ python file asks for the following parameters now:
 > ```
 
 ## XBee Sniffer Interface (XSI)
-A new program devloped by specifically for this project and to use XBee Radio modules. This program was developed in the background during testing and has been continously worked on. It helps manage files easier, make test start faster, checks for specific details, and improves reliability versus the old xbee_packet_sniffer_v2.py file. The program is currently at **Version 0.2.5**. To learn more, visit [here](https://github.com/a-pohlman/XBee-Sniffer-Interface/tree/xsi_windows?tab=readme-ov-file) to learn how to download, use, and test with it.
+A new program devloped for this project and uses XBee Radio modules. This program was developed in the background during testing and has been continously worked on. It helps manage files easier, make test start faster, checks for specific details, and improves reliability versus the old xbee_packet_sniffer_v2.py file. The program is currently at **Version 0.2.5-beta**. To learn more, visit [here](https://github.com/a-pohlman/XBee-Sniffer-Interface/tree/xsi_windows?tab=readme-ov-file) to learn how to download, use, and test with.
+
 
 
 
