@@ -97,7 +97,7 @@ void loop() {
     Serial.print("ReqP"); // start building message 
     Serial.print(atNode); // at the current node
 
-    switch (negativeAck) { // check if a neck acknowlegement has been requested
+    switch (negativeAck) { // check if a NACK acknowlegement has been requested
       case 0: // if not, put a comma
         Serial.println(",");
         break;
