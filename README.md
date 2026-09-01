@@ -1,32 +1,42 @@
-# C-ARQ Protocol + Energy Harvesting 
+# 2026 ONU Undergraduate Research || WSN with C-ARQ Protocol & Energy Harvesting 
 
 ## Background
-Networking protocols are improtant for the basic communication systems that run around the world. There are many different protocols that can be choosen from. This research focuses on one in particular: Cooperative Automatic Repeat Request (C-ARQ). This netowrk protocol works on a acknolowedgement (ACK) and negative-acknowlegment (NACK) system. Where if a packet is receieved successfully by the base station, then it moves on and broadcasts and postive ACK for all nodes to hear, whereas if the node fails to deliver it's packet, the base station will broadcast a NACK. Alongside a NACK, the base station will keep trying until it has reached the maximum amount of attempts before moving on and counting it as a lost packet. The cooperative part, allows other nearby nodes to become canidates for if a node fails to deliver it pack. Essentially making it more likely for a packet to be recieved, rather than not. Combining this with the idea of energy harvesting, it can be an effective strategy in having a network run and deliver packets, without the use of hooking up any nodes to a physical power source. 
+Networking protocols are improtant for the basic communication systems that run around the world. There are many different protocols that can be chosen from. This research focuses on one of these: Cooperative Automatic Repeat Request (C-ARQ). This netowrk protocol works on a acknolowedgement (ACK) and negative-acknowlegment (NACK) system. Where if a packet is receieved successfully by the base station, then it moves on and broadcasts and postive ACK for all nodes to hear, whereas if the node fails to deliver it's packet, the base station will broadcast a NACK. Alongside a NACK, the base station will keep trying until it has reached the maximum amount of attempts before moving on and counting it as a lost packet. The cooperative part, allows other nearby nodes to become canidates for if a node fails to deliver it pack. Essentially making it more likely for a packet to be recieved, rather than not. Combining this with the idea of energy harvesting, it can be an effective strategy in having a network run and deliver packets, without the use of hooking up any nodes to a physical power source. 
 
-The original research was started by **Cooper J. Koch** and **Alexander H. Burkholder** under the research advisor Dr. [**Ahmed Ammar**](https://www.onu.edu/directory/ahmed-ammar) at [<ins>Ohio Northern University</ins>](https://www.onu.edu/). The research for C-ARQ is now being continued by **Aaron J. Pohlman** under the research advisor Dr. [**Ahmed Ammar**](https://www.onu.edu/directory/ahmed-ammar) at [<ins>Ohio Northern University</ins>](https://www.onu.edu/) to further invstigate network trends and simulating trojan attacks. 
+The original undergraduate research, at [<ins>Ohio Northern University</ins>](https://www.onu.edu/), was started by **Cooper J. Koch** and **Alexander H. Burkholder** under the research advisor Dr. [**Ahmed Ammar**](https://www.onu.edu/directory/ahmed-ammar). 
+
+As of January 2026, the undergraduate research, at [<ins>Ohio Northern University</ins>](https://www.onu.edu/), is now being continued by **Aaron J. Pohlman** under the research advisor Dr. [**Ahmed Ammar**](https://www.onu.edu/directory/ahmed-ammar).
+
+As of September 2026, the undergraduate research, at [<ins>Ohio Northern University</ins>](https://www.onu.edu/), is now being continued by **Aaron J. Pohlman**, **Collin Snider**, and **Parker West** under the research advisor Dr. [**Ahmed Ammar**](https://www.onu.edu/directory/ahmed-ammar).
+
+> [!IMPORTANT]
+> Please read the papers published to IEEE for more information about research and contributions!
 
 ## Repository Information
-This is **Version 0.2** (located in ARQ_CODE_2 branch on Github) based on the code provided by Cooper. The original code has been significantly reworked for more improved readability, efficency, and fixed major bugs. View sections below for more information. 
+This is **Version 0.3** (located in ARQ_CODE_3 branch on Github). Check out the code to view how we program and setup our networks for testing purposes. Check out the below sections to view more information on, testing information, network code updates, and other projects.
+
+*This README.md was last updated: 9/1/2026*
 
 ## Testing Information
-The tests are conducted by using the following equipment:
+The tests are conducted by using the following hardware:
 - Arduino UNO R3 (by Elegoo)
 - XBee Pro Arduino UNO R3 Shields
 - XBee S2C Radios
 - XBee Programming PCB
 
 The tests use the following software to test and collect data:
-- base_station.ino
-- node_1.ino 
-- node_2.ino 
-- node_3.ino _(optional)_
-- node_4.ino _(optional)_
+- Arduino IDE
+	- base_station.ino
+	- node_1.ino 
+	- node_2.ino 
+	- node_3.ino _(optional)_
+	- node_4.ino _(optional)_
 - xbee_sniffer_v2.py
 - XBee Sniffer Interface (XSI) _(optional)_
-- XCTU by Digi Mesh
+- XCTU by Digi Mesh International
 
 > [!IMPORTANT] 
-> **All radio modules were programmed using the DigiMesh 2.4 (9002) Protocol with the XCTU app by Digi**
+> **All radio modules were programmed using the DigiMesh 2.4 (9002) Protocol with the XCTU**
 
 Testing parameters that change per test
 | Variables         |  Unit    |  Symbol |
@@ -101,7 +111,7 @@ Base station to send out and request data from N amount of nodes available to te
 
 - A major feature missing from the previous iteration was that the base station can now broadcast a negative acknowledgement when a packet initially fails, allowing all available nodes to become candidates to send their packets as well. 
 
-- Currently, that base station time to send out a request and read any potential data from a node, is theoretically supposed to run at a delay witha 1s delay. However, due to complications and bugs with reading values, in reality, it has been set up to delay around 1.2s. This ensures that data is being read when it is supposed to and not sending packets when not needed.
+- Currently, the base station time to send out a request and read any potential data from a node, is theoretically supposed to run at a delay witha 1s delay. However, due to complications and bugs with reading values, in reality, it has been set up to delay around 1.2s. This ensures that data is being read when it is supposed to and not sending packets when not needed.
 
 > _NOTE: Their is only been a slight bit of effort to mitigate duplicate packets!_
 
@@ -133,7 +143,7 @@ python file asks for the following parameters now:
 > ```
 
 ## XBee Sniffer Interface (XSI)
-A new program devloped for this project and uses XBee Radio modules. This program was developed in the background during testing and has been continously worked on. It helps manage files easier, make test start faster, checks for specific details, and improves reliability versus the old xbee_packet_sniffer_v2.py file. The program is currently at **Version 0.2.5-beta**. To learn more, visit [here](https://github.com/a-pohlman/XBee-Sniffer-Interface/tree/xsi_windows?tab=readme-ov-file) to learn how to download, use, and test with.
+A new program devloped for this project and uses XBee Radio modules. This program was developed in the background during testing and has been continously worked on. It helps manage files easier, make test start faster, checks for specific details, and improves reliability versus the old xbee_packet_sniffer_v2.py file. The program is currently at **Version 0.3.0-beta**. To learn more, visit [here](https://github.com/a-pohlman/XBee-Sniffer-Interface/tree/xsi_windows?tab=readme-ov-file) to learn how to download, use, and test with.
 
 
 
